@@ -21,6 +21,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="classes.py" />
+    <Compile Include="dictionary.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pizza.py" />
     <Compile Include="PythonCrashCource.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
