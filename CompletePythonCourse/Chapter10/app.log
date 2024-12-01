@@ -1,0 +1,11 @@
+2024-12-01 08:58:43,936 - DEBUG    [logging_example.py:11] This is a debug message
+2024-12-01 08:58:43,936 - INFO     [logging_example.py:12] This is an info message
+2024-12-01 08:58:43,936 - WARNING  [logging_example.py:13] This is a warning message
+2024-12-01 08:58:43,936 - ERROR    [logging_example.py:14] This is an error message
+2024-12-01 08:58:43,936 - CRITICAL [logging_example.py:15] This is a critical message
+2024-12-01 08:59:39,459 - DEBUG    [logging_example.py:11] This is a debug message
+2024-12-01 08:59:39,459 - INFO     [logging_example.py:12] This is an info message
+2024-12-01 08:59:39,460 - WARNING  [logging_example.py:13] This is a warning message
+2024-12-01 08:59:39,460 - ERROR    [logging_example.py:14] This is an error message
+2024-12-01 08:59:39,469 - CRITICAL [logging_example.py:15] This is a critical message
+2024-12-01 09:01:50,609 - INFO     [collection_ex.py:17] This is a counter example

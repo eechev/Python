@@ -1,0 +1,11 @@
+This milestons is a book list
+Is going to have two files
+    - and app.py file
+        - it will be a user menu - text based
+        - here we will import the database
+        - it will have a User choice:
+            - a to add book, l to list, r to mark as read, d to delete book, q to quit
+    - and a database.py file under the utils module
+        - the database will be concerned with storing and retrieving books from a list
+        - it will be an in-memory database or csv or json or actual database
+        - functions to add book with name, author and read, to list the books, to set book to read, and to delete the book
