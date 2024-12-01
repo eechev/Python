@@ -32,10 +32,27 @@ ITEM_HTML = '''<html><head></head><body>
 </body></html>
 '''
 
+class ParsedItemLocators:
+    """_summary_
+    
+    Locators for an item in the HTML page.
+    
+    This allows us to easily see what our code will be looking at
+    as well as change it quickly if we notice it is now different.
+    
+    """
+    NAME_LOCATOR = 'article.product_pod h3 a'
+    LINK_LOCATOR = 'article.product_pod h3 a'
+    PRICE_LOCATOR = 'article.product_pod p.price_color'
+    RATING_LOCATOR = 'article.product_pod p.star-rating'
+    
+
 class ParsedItem:
     """_summary_
-        A class to take in HTMl page (or part of it), and find properties of
-        an item in it
+    
+    A class to take in HTMl page (or part of it), and find properties of
+    an item in it
+    
     """
 
     def __init__(self, page):
@@ -43,7 +60,7 @@ class ParsedItem:
 
     @property
     def name(self):
-        locator = 'article.product_pod h3 a' # finding through an hierarchy
+        locator = ParsedItemLocators.NAME_LOCATOR # finding through an hierarchy
         item_link = self.soup.select_one(locator)
         if item_link:
             return item_link.attrs['title']
@@ -51,26 +68,33 @@ class ParsedItem:
             return None
 
     @property
-    def price(self):
-        locator = 'article.product_pod p.price_color'
+    def link(self):
+        locator = ParsedItemLocators.LINK_LOCATOR
         item_link = self.soup.select_one(locator)
         if item_link:
-            expression = '[0-9]*\\.[0-9]*'
-            price = float(re.findall(expression, item_link.text)[0])
-            print(price)
+            return item_link.attrs["href"]
+        else:
+            return None
+    
+    @property
+    def price(self):
+        locator = ParsedItemLocators.PRICE_LOCATOR
+        item_link = self.soup.select_one(locator)
+        if item_link:
+            # expression = '[0-9]*\\.[0-9]*'
+            # price = float(re.findall(expression, item_link.text)[0])
+            # print(price)
             # another way of doing the reg ex
             pattern = '£([0-9]+\\.[0-9]+)'
             matcher = re.search(pattern, item_link.text)
             if matcher:
                 return float(matcher.group(1))
-            else:
-                return None
-        else:
-            return None
+        
+        return None
         
     @property
     def ratings(self):
-        locator = 'article.product_pod p.star-rating'
+        locator = ParsedItemLocators.RATING_LOCATOR
         star_rating_tag = self.soup.select_one(locator)
         if star_rating_tag:
             classes = star_rating_tag.attrs['class']
@@ -83,6 +107,7 @@ class ParsedItem:
 
 myParseItem = ParsedItem(ITEM_HTML)
 
-print(myParseItem.name)
-print(myParseItem.price)
-print(myParseItem.ratings)
+print(myParseItem.name if myParseItem.name != None else "not found")
+print(myParseItem.link if myParseItem.link != None else "not found")
+print(myParseItem.price if myParseItem.price != None else "not found")
+print(myParseItem.ratings if myParseItem.ratings != None else "not found")
