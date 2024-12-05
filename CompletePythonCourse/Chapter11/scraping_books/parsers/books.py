@@ -1,6 +1,8 @@
-import re
+import logging
 from locators.book_locators import BookLocators
-from typing import List
+
+logger = logging.getLogger('scraping.book_parser')
+
 
 class BookParser:
     """_summary_
@@ -12,16 +14,19 @@ class BookParser:
         self.parent = parent
 
     def __repr__(self) -> str:
+        
         return f'<Book {self.title}, Price {self.price}, Rating {self.rating}>'
     
     @property
     def title(self) -> str:
+        logger.info("getting title")
         locator = BookLocators.TITLE
         item = self.parent.select_one(locator)
         return item.attrs['title']
     
     @property
     def price(self) -> str:
+        logger.info('getting price')
         locator = BookLocators.PRICE
         item = self.parent.select_one(locator)
         #expression = '[0-9]*\\.[0-9]*'
