@@ -1,5 +1,6 @@
 from app import books
 
+
 USER_CHOICE = ''' Enter one of the following
 - 'b' to look at 5-star books
 - 'c' to look at the cheapest books
@@ -36,18 +37,22 @@ def print_next_book():
     print("\n")
 
 
+user_choices = {
+    'b': print_best_books,
+    'c': print_cheapest_books,
+    'n': print_next_book
+}
+
 def menu():
     user_input = input(USER_CHOICE)
     while user_input != 'q':
-        if user_input == "b":
-            print_best_books()
-        elif user_input == "c":
-            print_cheapest_books()
-        elif user_input == 'n':
-            print_next_book()
+        if user_input in ('b', 'c', 'n'):
+            user_choices[user_input]()
         else:
             print("Invalid input. Please try again")
         
         user_input = input(USER_CHOICE)
+
+
 
 menu()
